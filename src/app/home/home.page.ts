@@ -60,7 +60,7 @@ export class HomePage {
     }, 1000);
   }
 
-  progressTimer(){
+  progressTimer() {
     let countDownDate = new Date();
     this.overallTimer = setInterval(() =>{
       let now = new Date().getTime();
@@ -74,12 +74,28 @@ export class HomePage {
       this.elapsed.m = this.pad(this.elapsed.m, 2);
       this.elapsed.s = this.pad(this.elapsed.s, 2);
 
-    });
+    }, 1000);
   }
 
-  pad(num, size){
+  pad(num, size) {
     let s = num+'';
     while (s.length < size) s = '0' + s;
     return s;
   }
+
+  stopTime() {
+    clearInterval(this.timer);
+    clearInterval(this.overallTimer);
+    this.overallTimer = false;
+    this.timer = false;
+    this.percent = 0;
+    this.progress = 0;
+    this.elapsed = {
+      h: '00',
+      m: '00',
+      s: '00'
+    }
+    //this.insomnia.allowSleepAgain()
+  }
+
 }
